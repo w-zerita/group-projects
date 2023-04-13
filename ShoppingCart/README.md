@@ -5,7 +5,7 @@ The objective of this project is to build a Shopping Cart Web Application using 
 
 ### Video Demonstration
 
-[![Shopping Cart Video][shoppingcart-demo]](https://www.youtube.com/watch?v=vlLjMs4ZPls)
+[Link](https://www.youtube.com/watch?v=vlLjMs4ZPls)
 
 ### Project Features
 
