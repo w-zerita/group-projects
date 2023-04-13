@@ -6,6 +6,7 @@ The objective of this project is to build a Shopping Cart Web Application using 
 ### Video Demonstration
 
 https://user-images.githubusercontent.com/79044966/231689270-4187b9ac-ef07-425b-9cec-4325efb59ec2.mp4
+https://www.youtube.com/watch?v=vlLjMs4ZPls
 
 ### Project Features
 
