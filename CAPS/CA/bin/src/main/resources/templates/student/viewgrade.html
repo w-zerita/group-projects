@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Grades and GPA</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/studentSidebar.html :: studentSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>View Grades and GPA</h1>
+				<hr>
+				<table class="table table-bordered table-striped"
+					th:if="${not #lists.isEmpty(grades)}">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>Course Name</th>
+							<th>Credits</th>
+							<th>Grade</th>
+						</tr>
+						<tr th:each="grade:${grades}">
+							<td th:text=${grade.course.courseNum}>No.</td>
+							<td th:text=${grade.course.name}>Course Name</td>
+							<td th:text=${grade.course.credits}>Credits</td>
+							<td th:text=${grade.grade}>Grade</td>
+						</tr>
+				</table>
+				<p>
+					<b th:text="'Your CGPA is : ' + ${cgpa}">CGPA</b>
+				</p>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

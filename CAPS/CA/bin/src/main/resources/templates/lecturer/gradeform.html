@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Grade Student</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/lecturerSidebar.html :: lecturerSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>Grade Student</h1>
+				<form action="#" th:object="${grade1}"
+					th:action="@{/lecturer/savegrade}" method="post">
+					<fieldset>
+						<input type="hidden" th:field="*{id}">
+					</fieldset>
+					<fieldset>
+						Grade: <select th:field="*{grade}">
+							<option value="A+">A+</option>
+							<option value="A">A</option>
+							<option value="A-">A-</option>
+							<option value="B+">B+</option>
+							<option value="B">B</option>
+							<option value="B-">B-</option>
+							<option value="C+">C+</option>
+							<option value="C">C</option>
+							<option value="D+">D+</option>
+							<option value="D">D</option>
+							<option value="F">F</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<input type="submit" value="Save" 
+							onclick="if (!(confirm('Save Grade?'))) return false"/> 
+						&nbsp; &nbsp; 
+						<input type="reset" value="Reset" />
+					</fieldset>
+
+				</form>
+				<br />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

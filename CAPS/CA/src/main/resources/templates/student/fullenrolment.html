@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" media="all" 
+          th:href="@{/css/style.css}" />
+<title>Course Enrolment</title>
+</head>
+<body>
+
+	<div class="topnav">
+		<a href="welcome.html" th:href="@{/student/authenticate}">Home</a> 
+		<a href="viewgrade.html" th:href="@{/student/viewgrade}">Grades and GPA</a> 
+		<a class="active" href="viewcourse.html" th:href="@{/student/viewcourse}">Course Enrolment</a> 
+		<a href="viewenrollment.html" th:href="@{/student/viewenrollment}">View Enrolment</a>
+		<form action="" th:object="${student}" th:action="@{/student/logout}" method="post">
+			<button type="submit">Log out</button>
+		</form>
+	</div>
+	
+	<div style="padding-left: 16px">
+
+	<h2>Course Enrolment Currently Unavailable</h2>
+	
+	<p>Thank you taking interest in this Course!</p>
+	
+	<p>We regret to inform you that Enrolment for this Course is currently FULL</p>
+	
+	<p>Check out 'Course Enrolment' to enrol for another course of your interest!</p>
+	
+	</div>
+
+</body>
+</html>

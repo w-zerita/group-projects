@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Lecturer Home Page</title>
+</head>
+<body>
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/lecturerSidebar.html :: lecturerSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div style="padding-left: 16px">
+				<h2 th:utext="'Hello ' + ${session.lsession.userName}">Hello</h2>
+				<p>Welcome~ Have fun trying out the different functions for
+					Course Enrolment!</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

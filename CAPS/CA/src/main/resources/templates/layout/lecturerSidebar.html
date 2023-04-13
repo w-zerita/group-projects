@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div th:fragment="lecturerSidebar" id="lecturerSidebar">
+	<div class="list-group" id="list-tab" role="tablist">
+	  <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/lecturer/coursetaught" role="tab">Courses Taught</a>
+	  <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="/lecturer/gradecourse" role="tab">Grade a Course</a>
+	  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/lecturer/viewstudentlist" role="tab">View Student Performance</a>
+	  <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/lecturer/logout" role="tab">Log Out</a>
+	</div>
+</div>
+
+</body>
+</html>

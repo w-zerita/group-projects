@@ -1,0 +1,146 @@
+package sg.edu.iss.ca.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import sg.edu.iss.ca.model.Course;
+import sg.edu.iss.ca.model.Student;
+import sg.edu.iss.ca.repo.CourseRepository;
+import sg.edu.iss.ca.service.StudentImplementation;
+
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+@Controller
+@RequestMapping("/manageStudents")
+public class AdminManageStudentsController {
+
+	@Autowired
+	CourseRepository crepo;
+	
+	@Autowired
+    StudentImplementation  studentService;
+
+    public AdminManageStudentsController(StudentImplementation theStudentService){
+        studentService = theStudentService;
+    }
+
+    @GetMapping("/adminStudent")
+    public String listStudent(Model theModel,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+        List<Student> theStudents = studentService.findAll();
+
+        theModel.addAttribute("students", theStudents);
+
+        return "/admin/adminStudent";
+    }
+    
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+    	int pageSize = 3;
+    	
+    	Page<Student> page = studentService.findPaginated(pageNo, pageSize);
+    	List<Student> listStudents = page.getContent();
+    	
+    	model.addAttribute("currentPage", pageNo);
+    	model.addAttribute("totalPages", page.getTotalPages());
+    	model.addAttribute("totalItems", page.getTotalElements());
+    	model.addAttribute("listCourses", listStudents);
+    	
+    	return "admin/studentPage";
+    }
+    
+    
+
+    @GetMapping("/adminAddStudent")
+    public String adminFormAddStudent(Model theModel,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+        Student theStudent = new Student();
+
+        theModel.addAttribute("student", theStudent);
+
+        return "/admin/adminStudentAdd";
+    }
+
+    @GetMapping("/adminUpdateStudent")
+    public String adminFormUpdateStudent(@RequestParam("studentId") int id, Model theModel,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+        Student theStudent = studentService.findById2(id);
+
+        theModel.addAttribute("student", theStudent);
+
+        return "/admin/adminStudentUpdate";
+    }
+    
+    @PostMapping("/update")
+    public String adminUpdateStudent(@ModelAttribute("student") Student theStudent,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+		
+		studentService.save(theStudent);
+		return "redirect:/manageStudents/adminStudent";
+
+    }
+
+
+    @PostMapping("/save")
+    public String adminSaveStudent(@ModelAttribute("student") Student theStudent,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+		
+		else if(studentService.checkExist(theStudent)==false)
+		{
+	        studentService.save(theStudent);
+	        return "redirect:/manageStudents/adminStudent";
+		}
+		
+        return "redirect:/manageStudents/adminStudent";
+    }
+
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("studentid") int id,HttpSession session){
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+    	List<Course> courses = (List<Course>) studentService.findById1(id).getLearnings();
+    	for (Course course : courses) {
+			course.setEnrollment(course.getEnrollment()-1);
+			crepo.saveAndFlush(course);
+		}
+    	
+        studentService.deleteById(id);
+        return "redirect:/manageStudents/adminStudent";
+    }
+
+    @GetMapping("/search")
+    public String delete(@RequestParam("studentUser") String theUser,
+                         Model theModel,HttpSession session) {
+		if (session.getAttribute("asession") == null) {
+			return "forward:/admin/login";
+		}
+
+        List<Student> theStudents = studentService.searchBy(theUser);
+
+        theModel.addAttribute("employees", theStudents);
+
+        return "/admin/adminStudent";
+
+    }
+
+}

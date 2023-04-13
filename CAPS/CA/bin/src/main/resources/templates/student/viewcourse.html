@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Course Enrolment</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/studentSidebar.html :: studentSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>Enrol for a Course</h1>
+				<hr>
+				<table class="table table-bordered table-striped"
+					th:if="${not #lists.isEmpty(enrolllist)}">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>Course Name</th>
+							<th>Description</th>
+							<th>Enrolment</th>
+							<th>Size</th>
+							<th>Credits</th>
+							<th>Enrol</th>
+						</tr>
+						<tr th:each="course:${enrolllist}">
+							<td th:text=${course.courseNum}>Id</td>
+							<td th:text=${course.name}>Name</td>
+							<td th:text=${course.description}>Description</td>
+							<td th:text=${course.enrollment}>Enrolment</td>
+							<td th:text=${course.size}>Size</td>
+							<td th:text=${course.credits}>Credits</td>
+							<td><a href="Enroll.html" class="btn btn-primary mr-5 mb-3"
+								th:href="@{/student/enroll/}+${course.id}">Enrol</a></td>
+						</tr>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Add Lecturer</title>
+</head>
+
+<body>
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/adminSidebar.html :: adminSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h3>Update Course Information</h3>
+				<hr>
+
+				<form th:action="@{/manageCourses/update}"
+					th:object="${newCourse}" method="POST">
+
+					<input type="hidden" th:field="*{id}" th:required="required"/>
+
+					<input type="hidden" th:field="*{enrollment}" th:required="required"/>
+					
+					<input type="hidden" th:field="*{courseNum}" class="form-control mb-4 col-4" placeholder="Course Number" th:required="required">
+					
+					Course Name: <input type="text"
+						th:field="*{name}" class="form-control mb-4 col-4"
+						placeholder="Course Name" th:required="required">
+
+					Course Description: <input
+						type="text" th:field="*{description}"
+						class="form-control mb-4 col-4" placeholder="Course Description" th:required="required">
+
+					Course Credits: <input type="number" th:field="*{credits}"
+						class="form-control mb-4 col-4" placeholder="Number of Credits" th:required="required" min="1">
+
+					Class Size: <input type="number" th:field="*{size}"
+						class="form-control mb-4 col-4" placeholder="Class Size" th:required="required" min="1">
+
+
+					<button type="submit" class="btn btn-info col-2">Save</button>
+
+				</form>
+
+				<hr>
+				<a th:href="@{/manageCourses/list}">Back to Course List</a>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

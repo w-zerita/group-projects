@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Add Student</title>
+</head>
+<body>
+<header th:insert="layout/navbar.html :: header"></header>
+<div class="row">
+
+    <div th:insert="layout/adminSidebar.html :: adminSidebar" class="col-2"></div>
+
+	<div class="container">
+	
+	    <h3>Add Student</h3>
+	    <hr>
+	
+	    <p class="h4 mb-4">Save Student</p>
+	
+		<form th:action="@{/manageStudents/save}"
+	          th:object="${student}" method="POST">
+	
+	        <!-- Add hidden form field to handle update -->
+	        <input type="hidden" th:field="*{id}" th:required="required"/>
+			
+			No: 
+			<input type="text" th:field="*{studentNum}" class="form-control mb-4 col-4" placeholder="Student Number">
+			
+	        First Name:
+	        <input type="text" th:field="*{firstName}"
+	               class="form-control mb-4 col-4" placeholder="First Name" th:required="required">
+	
+	        Last Name:
+	        <input type="text" th:field="*{lastName}"
+	               class="form-control mb-4 col-4" placeholder="Last Name" th:required="required">
+	
+	        Username:
+	        <input type="text" th:field="*{userName}"
+	               class="form-control mb-4 col-4" placeholder="Username" th:required="required">
+	
+	        Password:
+	        <input type="text" th:field="*{userPassword}"
+	               class="form-control mb-4 col-4" placeholder="Password" th:required="required">
+	
+	        Enrolment Date
+	        <input type="date" th:field="*{enrollmentDate}"
+	               class="form-control mb-4 col-4" placeholder="Enrollment Date" th:required="required">
+	
+	        <button type="submit" class="btn btn-info col-2">Save</button>
+	
+	    </form>
+	
+	    <hr>
+	    <a th:href="@{/manageStudents/adminStudent}">Back to Student List</a>
+	
+	</div>
+
+
+
+</div>
+
+</body>
+</html>

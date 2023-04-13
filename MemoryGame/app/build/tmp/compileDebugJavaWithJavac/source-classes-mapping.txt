@@ -1,0 +1,11 @@
+iss/workshop/ca/GameActivity.java
+ iss.workshop.ca.GameActivity
+ iss.workshop.ca.GameActivity$1
+ iss.workshop.ca.GameActivity$2
+iss/workshop/ca/MainActivity.java
+ iss.workshop.ca.MainActivity
+ iss.workshop.ca.MainActivity$downloadImg
+iss/workshop/ca/CardObject.java
+ iss.workshop.ca.CardObject
+iss/workshop/ca/BuildConfig.java
+ iss.workshop.ca.BuildConfig

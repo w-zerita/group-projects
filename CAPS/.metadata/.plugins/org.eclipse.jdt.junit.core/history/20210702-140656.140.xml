@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="StudentRepositoryUnitTests" project="CA" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="sg.edu.iss.ca.repo.StudentRepositoryUnitTests" time="0.227" displayname="StudentRepositoryUnitTests" uniqueid="[engine:junit-jupiter]/[class:sg.edu.iss.ca.repo.StudentRepositoryUnitTests]">
+    <testcase name="testCreateStudent" classname="sg.edu.iss.ca.repo.StudentRepositoryUnitTests" time="0.12" displayname="testCreateStudent()" uniqueid="[engine:junit-jupiter]/[class:sg.edu.iss.ca.repo.StudentRepositoryUnitTests]/[method:testCreateStudent()]"/>
+    <testcase name="testCreateCourse" classname="sg.edu.iss.ca.repo.StudentRepositoryUnitTests" time="0.016" displayname="testCreateCourse()" uniqueid="[engine:junit-jupiter]/[class:sg.edu.iss.ca.repo.StudentRepositoryUnitTests]/[method:testCreateCourse()]"/>
+    <testcase name="testCheckEnrolment" classname="sg.edu.iss.ca.repo.StudentRepositoryUnitTests" time="0.053" displayname="testCheckEnrolment()" uniqueid="[engine:junit-jupiter]/[class:sg.edu.iss.ca.repo.StudentRepositoryUnitTests]/[method:testCheckEnrolment()]"/>
+    <testcase name="testStudentCourses" classname="sg.edu.iss.ca.repo.StudentRepositoryUnitTests" time="0.036" displayname="testStudentCourses()" uniqueid="[engine:junit-jupiter]/[class:sg.edu.iss.ca.repo.StudentRepositoryUnitTests]/[method:testStudentCourses()]"/>
+  </testsuite>
+</testrun>

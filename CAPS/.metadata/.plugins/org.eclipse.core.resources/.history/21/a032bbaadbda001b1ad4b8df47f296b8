@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Manage Lecturers</title>
+</head>
+<body>
+
+<header th:insert="layout/navbar.html :: header"></header>
+
+<div class="row">
+
+<div th:insert="layout/adminSidebar.html :: adminSidebar" class="col-2"></div>
+
+  <div class="container">
+	  <div class="col-10">
+	  <h1>Manage Lecturers Page</h1>
+	  <hr>
+	  <br>
+	  <form th:action="@{/manageLecturers/addLecturer}" th:object="${newLecturer}" th:method="post">
+  		<button type="submit" class="btn btn-primary">Add Lecturer</button>
+	  </form>
+	  <br>
+	    <table class="table table-bordered table-striped" >
+	        <thead class="thead-dark">
+	        <tr>
+	            <th>No.</th>
+	            <th>Title</th>
+	            <th>First Name</th>
+	            <th>Last Name</th>
+	            <th>Username</th>
+	            <th>Action</th>
+	        </tr>
+	        </thead>
+	
+	        <tbody>
+	        <tr th:each="lecturers : ${listLecturers}">
+	
+	            <td th:text="${lecturers.lecturerNum}" />
+	            <td th:text="${lecturers.title}" />
+	            <td th:text="${lecturers.firstName}" />
+	            <td th:text="${lecturers.lastName}" />
+	            <td th:text="${lecturers.userName}" />
+	
+	            <td>
+                <a th:href="@{/manageLecturers/updateLecturer(lecturerId=${lecturers.id})}"
+	                   class="btn btn-info btn-sm">
+	                   Update
+				</a>
+	            
+	            <a th:href="@{/manageLecturers/deleteLecturer(lecturerId=${lecturers.id})}"
+	                   class="btn btn-danger btn-sm"
+                   	   onclick="if (!(confirm('Are you sure you want to delete this lecturer?'))) return false">
+	                   Delete
+				</a>
+				
+	            </td>
+	        </tr>
+	        </tbody>
+	    </table>
+	
+	  </div>
+	</div>
+</div>
+    
+</body>
+</html>

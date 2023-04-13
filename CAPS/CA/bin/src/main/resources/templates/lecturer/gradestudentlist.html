@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Student List</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/lecturerSidebar.html :: lecturerSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>List of Course Students</h1>
+				<hr>
+				<table class="table table-bordered table-striped"
+					th:if="${not #lists.isEmpty(students)}">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>Student Name</th>
+							<th>Course Grade</th>
+						</tr>
+						<tr th:each="student:${students}">
+							<td th:text=${student.studentNum}>No.</td>
+							<td th:text="${student.firstName} + ' ' + ${student.lastName}">Name</td>
+							<td><a href="CourseEnrolment.html"
+								class="btn btn-primary mr-5 mb-3"
+								th:href="@{/lecturer/gradecourse/}+${course.id}+@{/}+${student.id}">Input
+									grade</a></td>
+
+						</tr>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

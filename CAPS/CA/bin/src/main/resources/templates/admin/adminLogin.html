@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/style.css}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Admin Login</title>
+</head>
+
+<body>
+
+	<div class="w3-top">
+		<header th:insert="layout/navbar.html :: header"></header>
+	</div>
+
+	<!-- Login -->
+	<header class="w3-display-container w3-content"
+		style="max-width: 2000px; margin-top: 46px">
+		<img src="/img/bg1.jpg" style="width: 100%; opacity: 0.3">
+		<div class="w3-display-left w3-padding w3-col l4 m8">
+			<div class="w3-container w3-blue-grey">
+				<h3>Admin Login</h3>
+			</div>
+			<div class="w3-container w3-white w3-padding-16">
+				<form action="" th:object="${admin}"
+					th:action="@{/admin/authenticate}" method="post">
+					<fieldset>
+						Name: <input type="text" th:field="*{userName}" th:required="required">
+						<p th:if="${#fields.hasErrors('userName')}"
+							th:errors="*{userName}" style="color: red"></p>
+					</fieldset>
+					<fieldset>
+						Password: <input type="password" th:field="*{userPassword}" th:required="required">
+						<p th:if="${#fields.hasErrors('userPassword')}"
+							th:errors="*{userPassword}" style="color: red"></p>
+					</fieldset>
+					<fieldset>
+						<button type="submit">Log In</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<div th:insert="layout/navbar.html :: team"></div>
+
+</body>
+</html>

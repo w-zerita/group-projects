@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div th:fragment="header" id="header">
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/">CAPS</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="/admin/login">Admin
+							Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="/student/login">Student
+							Login</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lecturer/login">Lecturer Login</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+	
+	<!-- Team Container -->
+		<div th:fragment="team" class="w3-container w3-padding-64 w3-center" id="team">
+			<h2>SA52 TEAM 5</h2>
+			<p>Meet the team - our members:</p>
+
+			<div class="w3-row">
+				<br>
+
+				<div class="w3-col" style="width: 20%">
+					<img src="/img/cb.jpg" alt="Boss" style="width: 45%"
+						class="w3-circle w3-hover-opacity">
+					<h3>Luo Shi Qi</h3>
+					<p>Team Member</p>
+				</div>
+
+				<div class="w3-col" style="width: 20%">
+					<img src="/img/sn.jpg" alt="Boss" style="width: 45%"
+						class="w3-circle w3-hover-opacity">
+					<h3>He Xue Sheng</h3>
+					<p>Team Member</p>
+				</div>
+
+				<div class="w3-col" style="width: 20%">
+					<img src="/img/lu.jpg" alt="Boss" style="width: 45%"
+						class="w3-circle w3-hover-opacity">
+					<h3>Wong Zerita</h3>
+					<p>Team Member</p>
+				</div>
+
+				<div class="w3-col" style="width: 20%">
+					<img src="/img/sc.jpg" alt="Boss" style="width: 45%"
+						class="w3-circle w3-hover-opacity">
+					<h3>Wong Duan Jian</h3>
+					<p>Team Member</p>
+				</div>
+
+				<div class="w3-col" style="width: 20%">
+					<img src="/img/sa.jpg" alt="Boss" style="width: 45%"
+						class="w3-circle w3-hover-opacity">
+					<h3>Belinda Wan</h3>
+					<p>Team Member</p>
+				</div>
+
+			</div>
+
+		</div>
+
+
+</body>
+</html>

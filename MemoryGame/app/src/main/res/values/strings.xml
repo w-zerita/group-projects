@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CA</string>
+    <string name="hint">Enter URL here</string>
+    <string name="fetch">Fetch</string>
+    <string name="imgDL">Downloading image...</string>
+    <string name="start">Start</string>
+    <string name="selectImg">Select 6 images!</string>
+    <string name="invalidSelection">Invalid Selection!</string>
+    <string name="gameComplete">Congratulations! All cards are matched!</string>
+    <string name="backToHome">Back to home</string>
+    <string name="maxSelect">Maximum selection of 6 images!</string>
+    <string name="dlcomplete">Download Completed! Please select images</string>
+    <string name="fetchImg">Fetching images</string>
+    <string name="selectedImg">%1$d of %2$d images selected</string>
+    <string name="select">Select %1$d / %2$d images selected</string>
+    <string name="download">Downloading %1$d 0f 20 images</string>
+    <string name="enterlUrl">Please Enter a URL</string>
+</resources>

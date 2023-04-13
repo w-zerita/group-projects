@@ -1,0 +1,75 @@
+package sg.edu.iss.ca;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import sg.edu.iss.ca.model.Admin;
+import sg.edu.iss.ca.model.Course;
+import sg.edu.iss.ca.model.Grade;
+import sg.edu.iss.ca.model.Lecturer;
+import sg.edu.iss.ca.model.Student;
+import sg.edu.iss.ca.repo.AdminRepository;
+import sg.edu.iss.ca.repo.CourseRepository;
+import sg.edu.iss.ca.repo.GradeRepository;
+import sg.edu.iss.ca.repo.LecturerRepository;
+import sg.edu.iss.ca.repo.StudentRepository;
+
+
+
+@SpringBootApplication
+public class CaApplication {
+	
+	@Autowired
+	StudentRepository srepo;
+	
+	@Autowired
+	GradeRepository grepo;
+	
+	@Autowired
+	CourseRepository crepo;
+	
+	@Autowired
+	LecturerRepository lrepo;
+	
+	@Autowired
+	AdminRepository arepo;
+	
+	
+	public static void main(String[] args) {
+		SpringApplication.run(CaApplication.class, args);
+	}
+	@Bean
+	CommandLineRunner runner() {
+		return args -> { 			
+//			Course c1 = new Course("C#", "Programming language", 1, 0, 8, "c1");
+//			Course c2 = new Course("C", "Programming language", 50, 0, 10, "c2");
+//			Course c3 = new Course("Java", "Programming language", 50, 0, 8, "c3");
+//			Course c4 = new Course("C++", "Programming language", 50, 0, 16, "c4");
+//			crepo.saveAndFlush(c1);
+//			crepo.saveAndFlush(c2);
+//			crepo.saveAndFlush(c3);
+//			crepo.saveAndFlush(c4);
+//			
+//			Lecturer l1 = new Lecturer("lecturer1", "12345", "Xs", "H", "l1");
+//			Lecturer l2 = new Lecturer("lecturer2", "12345", "Sq", "L", "l2");			
+//			lrepo.saveAndFlush(l1);
+//			lrepo.saveAndFlush(l2);
+//			
+//			Student s1 = new Student("student1", "12345","Xuesheng", "He", "s1");
+//			Student s2 = new Student("student2", "12345", "shiqi", "luo", "s2");
+//			srepo.saveAndFlush(s1);
+//			srepo.saveAndFlush(s2);
+//			
+//			Admin a1 = new Admin("admin1","12345", "firstName", "lastName");
+//			arepo.saveAndFlush(a1);
+			
+		};
+	}
+	
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Manage Courses</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/adminSidebar.html :: adminSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>Manage Courses Page</h1>
+				<hr>
+				<br>
+				<form th:action="@{/manageCourses/addCourse}"
+					th:object="${newCourse}" th:method="post">
+					<button type="submit" class="btn btn-primary">Add Course</button>
+				</form>
+				<br>
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>Course Name</th>
+							<th>Credits</th>
+							<th>Course Description</th>
+							<th>Maximum Class Size</th>
+							<th>Action</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="course : ${listCourses}">
+
+							<td th:text="${course.courseNum}" />
+							<td th:text="${course.name}" />
+							<td th:text="${course.credits}" />
+							<td th:text="${course.description}" />
+							<td th:text="${course.size}" />
+							<td><a
+								th:href="@{/manageCourses/updateCourse(courseId=${course.id})}"
+								class="btn btn-info btn-sm btn-block"> Update </a> <a
+								th:href="@{/manageCourses/deleteCourse(courseId=${course.id})}"
+								class="btn btn-danger btn-sm btn-block"
+								onclick="if (!(confirm('Are you sure you want to delete this Course?'))) return false">
+									Delete </a></td>
+							<td><a
+								th:href="@{/manageCourses/assigned(courseId=${course.id})}"
+								class="btn btn-success btn-sm"> Manage Lecturers </a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div th:if="${totalPages > 1}">
+					<div class="row col-sm-10">
+						<div class="col-sm-2">Total Rows: [[${totalItems}]]</div>
+						<div class="col-sm-1">
+							<span th:each="i:${#numbers.sequence(1, totalPages)}"> <a
+								th:if="${currentPage != i}"
+								th:href="@{'/manageCourses/page/' + ${i}}">[[${i}]]</a> <span
+								th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+							</span>
+						</div>
+						<div class="col-sm-1">
+							<a th:if="${currentPage < totalPages}"
+								th:href="@{'/manageCourses/page/' + ${currentPage + 1}}">Next</a>
+							<span th:unless="${currentPage < totalPages}">Next</span>
+						</div>
+
+						<div class="col-sm-1">
+							<a th:if="${currentPage > totalPages}"
+								th:href="@{'/manageCourses/page/' + ${currentPage - 1}}">Last</a>
+							<span th:unless="${currentPage > totalPages}">Last</span>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

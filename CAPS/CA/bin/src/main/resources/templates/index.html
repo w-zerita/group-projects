@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/style.css}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- images from https://www.peanuts.com/about/charlie-brown -->
+<title>Index Page</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<!-- Page content -->
+	<div class="w3-content" style="max-width: 2000px">
+
+		<!-- Welcome content -->
+		<div class="w3-display-container w3-center">
+			<img src="/img/bg1.jpg" style="width: 100%; opacity: 0.3">
+			<div class="w3-display-middle w3-container w3-text-black w3-padding-32 w3-hide-small">
+				<h1>Welcome</h1>
+				<p><b>This is a Web Application for Processing Course Enrolment</b></p>
+				<p><b>Proceed to Login to Admin, Lecturer or Student Account to test the application~</b></p>
+			</div>
+		</div>
+		
+		<div th:insert="layout/navbar.html :: team"></div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Enrolled Students</title>
+</head>
+<body>
+
+<header th:insert="layout/navbar.html :: header"></header>
+
+<div class="row">
+
+<div th:insert="layout/adminSidebar.html :: adminSidebar" class="col-2"></div>
+
+  <div class="container">
+	  <div class="col-10">
+	      <h1>Students enrolled in <span th:text=${course.Name}>Course Name></span></h1>
+	  <hr>
+    	<br>
+		  <form th:if="${#lists.size(course.students) < course.size}" th:action="@{/manageEnrolment/enrollStudent(courseId=${course.id})}" th:object="${course}" th:method="post">
+			  <button type="submit" class="btn btn-primary">Enroll Student</button>
+		  </form>
+		  <h3 th:if="${#lists.size(course.students) >= course.size}"> ***Class is full*** </h3>
+	  <br>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+    	<tr>
+    		<th>No.</th>
+    		<th>First Name</th>
+    		<th>Last Name</th>
+    		<th>Grade</th>
+    		<th>Action</th>
+    	</tr>
+    	</thead>
+    	
+ 	    <tr th:each="student : ${course.students}">
+			<td th:text="${student.studentNum}" />
+			<td th:text="${student.firstName}" />
+			<td th:text="${student.lastName}" />
+    		<td>Grade</td>
+    		<td>		                
+    		<a th:href="@{/manageEnrolment/removeStudentEnrollment(studentId=${student.id} , courseId=${course.id})}"
+			 class="btn btn-info btn-sm">
+            	Remove Student From Course
+			</a></td>
+ 	    </tr>
+    	
+    </table>
+    
+    <hr>
+
+	  </div>
+	</div>
+</div>
+
+
+</body>
+</html>

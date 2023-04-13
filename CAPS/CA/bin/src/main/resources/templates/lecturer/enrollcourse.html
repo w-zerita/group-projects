@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Course Enrolment</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/lecturerSidebar.html :: lecturerSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>Course Enrolment Details</h1>
+				<hr>
+				<table class="table table-bordered table-striped"
+					th:if="${not #lists.isEmpty(enrollStudent)}">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+						</tr>
+						<tr th:each="student:${enrollStudent}">
+							<td th:text=${student.studentNum}>No.</td>
+							<td th:text=${student.firstName}>firstName</td>
+							<td th:text=${student.lastName}>lastName</td>
+						</tr>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+
+INSERT INTO 'ca'.'admin'('first_name','last_name','user_name','user_password') VALUES('checkfirst','checklast','admin1','12345');
+
+INSERT INTO `ca`.`admin` (`first_name`, `second_name`,`user_name`, `user_password`) VALUES ('Albert', 'Einstien','admin2','12345');

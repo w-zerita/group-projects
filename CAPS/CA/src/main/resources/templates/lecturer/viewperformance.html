@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Student Performance</title>
+</head>
+<body>
+
+	<header th:insert="layout/navbar.html :: header"></header>
+
+	<div class="row">
+
+		<div th:insert="layout/lecturerSidebar.html :: lecturerSidebar"
+			class="col-2"></div>
+
+		<div class="container">
+			<div class="col-10">
+				<h1>View Student Performance</h1>
+				<hr>
+				<table class="table table-bordered table-striped"
+					th:if="${not #lists.isEmpty(gradelist)}">
+					<thead class="thead-dark">
+						<tr>
+							<th>No.</th>
+							<th>Student Name</th>
+							<th>Course Name</th>
+							<th>Grade</th>
+						</tr>
+						<tr th:each="grade:${gradelist}">
+							<td th:text=${grade.student.studentNum}>No.</td>
+							<td
+								th:text="${grade.student.firstName}+${grade.student.lastName}">
+								Name</td>
+							<td th:text=${grade.course.name}>Course Name</td>
+							<td th:text=${grade.grade}>Grade</td>
+
+						</tr>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
