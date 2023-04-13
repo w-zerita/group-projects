@@ -17,7 +17,7 @@ https://user-images.githubusercontent.com/79044966/231689270-4187b9ac-ef07-425b-
 * Purchase History which shows all purchased products with relevant information such as purchase date and activation code for each product
 * Wishlist to store products that user is contemplating to purchase
 
-*Note: My contributions to the project are in bold*
+(*Note: My contributions to the project are in bold*)
 
 ### Additional Information
 
