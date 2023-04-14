@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class MenuItem {
@@ -18,6 +20,7 @@ public class MenuItem {
 	private String name;
 	private String description;
 	private double price;
+	@JsonIgnore
 	private String photo;
 	private String status;
 	
@@ -25,6 +28,7 @@ public class MenuItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "hawker_id")
+	@JsonIgnore
 	private Hawker hawker;
 
 	public MenuItem(String name, String description, double price, String photo, String status, Hawker hawker) {
@@ -109,6 +113,7 @@ public class MenuItem {
 	}
 	
 	@Transient
+	@JsonIgnore
     public String getPhotoImagePath() {
         if (photo == null || id <= 0) return null;
          

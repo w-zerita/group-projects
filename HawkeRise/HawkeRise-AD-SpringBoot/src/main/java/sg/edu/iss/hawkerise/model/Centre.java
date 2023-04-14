@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Centre {
 
@@ -27,6 +29,7 @@ public class Centre {
 	private String imgUrl = "";
 
 	@OneToMany(mappedBy = "centre", cascade = { CascadeType.REMOVE })
+	@JsonIgnore
 	private Set<Hawker> hawkers;
 
 	public Centre() {
@@ -35,7 +38,7 @@ public class Centre {
 	}
 
 	public Centre(int id, String name, String address, double latitude, double longitude, double distance,
-			String imgUrl) {
+			String imgUrl,int numOfStalls) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,6 +47,7 @@ public class Centre {
 		this.longitude = longitude;
 		this.distance = distance;
 		this.imgUrl = imgUrl;
+		this.numOfStalls = numOfStalls;
 	}
 
 	public Centre(int id, String name, String address, double latitude, double longitude, String imgUrl,

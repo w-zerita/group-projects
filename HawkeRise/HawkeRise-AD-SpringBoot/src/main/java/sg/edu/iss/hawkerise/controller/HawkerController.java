@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import sg.edu.iss.hawkerise.model.Centre;
 import sg.edu.iss.hawkerise.model.Hawker;
+import sg.edu.iss.hawkerise.model.MenuItem;
 import sg.edu.iss.hawkerise.model.Tag;
 import sg.edu.iss.hawkerise.service.CentreService;
 import sg.edu.iss.hawkerise.service.HawkerService;
@@ -183,7 +184,10 @@ public class HawkerController {
 						throw new IOException("Could not save uploaded file: " + fileName);
 					}
 
-					String localUrl = "http://localhost:8080" + hawker.getPhotoImagePath();
+//					String localUrl = "http://10.40.1.56:8080" + hawker.getPhotoImagePath();
+					String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media";
+
+
 					hawker.setHawkerImg(localUrl);
 
 					hservice.createHawker(hawker);
@@ -211,7 +215,9 @@ public class HawkerController {
 						throw new IOException("Could not save uploaded file: " + fileName);
 					}
 
-					String localUrl = "http://localhost:8080" + hawker.getPhotoImagePath();
+//					String localUrl = "http://10.40.1.56:8080" + hawker.getPhotoImagePath();
+					String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media";
+
 					hawker.setHawkerImg(localUrl);
 
 					hservice.createHawker(hawker);
@@ -222,7 +228,6 @@ public class HawkerController {
 			}
 		}
 	}
-
 	@RequestMapping(value = "/update")
 	public String update(Model model, HttpSession session) {
 		if (session.getAttribute("hsession") == null) {
@@ -238,48 +243,60 @@ public class HawkerController {
 	}
 
 	@RequestMapping(value = "/saveUpdate")
-	public String saveUpdate(@ModelAttribute("hawkerToUpdate") Hawker hawkerToUpdate, HttpSession session, Model model,
-			@RequestParam("filePhoto") MultipartFile multipartFile, BindingResult bindingResult) throws IOException {
+	public String saveUpdate(@ModelAttribute("hawkerToUpdate") Hawker hawkerToUpdate, BindingResult bindingResult,HttpSession session, Model model,
+			@RequestParam("filePhoto") MultipartFile multipartFile) throws IOException {
 		if (session.getAttribute("hsession") == null) {
 			return "forward:/hawker/login";
 		}
+		if (hservice.checkValidTime(hawkerToUpdate) == false) {
+			bindingResult.addError(new FieldError("hawker", "operatingHours","Closing Hours should be after Opening Hours! Please check."));
+			return "hawker/updateDetails";
+		}
 
-		else {
+		if (multipartFile.isEmpty()) {
 			Hawker oldHawker = hservice.findByUserName(hawkerToUpdate.getUserName());
-			if (multipartFile.isEmpty()) {
 
-				hawkerToUpdate.setPhoto(oldHawker.getPhoto());
-				hawkerToUpdate.setLocalUrl(oldHawker.getLocalUrl());
-			}
+			hawkerToUpdate.setPhoto(oldHawker.getPhoto());
+			hawkerToUpdate.setHawkerImg(oldHawker.getHawkerImg());
 
-			else {
-				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-				hawkerToUpdate.setPhoto(fileName);
-
-				String uploadDir = "./hawker-photo/" + oldHawker.getId();
-
-				Path uploadPath = Paths.get(uploadDir);
-				if (!Files.exists(uploadPath)) {
-					Files.createDirectories(uploadPath);
-				}
-				try (InputStream inputStream = multipartFile.getInputStream()) {
-					Path filePath = uploadPath.resolve(fileName);
-					Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-				} catch (IOException e) {
-					throw new IOException("Could not save uploaded file: " + fileName);
-				}
-
-				String localUrl = "http://localhost:8080" + hawkerToUpdate.getPhotoImagePath();
-				hawkerToUpdate.setHawkerImg(localUrl);
-			}
-			
 			hservice.update(hawkerToUpdate);
-			model.addAttribute("hawker", oldHawker);
-			session.removeAttribute("hesssion");
-			session.setAttribute("hsession", oldHawker);
+			session.removeAttribute("hsession");
+			session.setAttribute("hsession", hservice.findByUserName(hawkerToUpdate.getUserName()));
 
 			return "forward:/hawker/home";
 		}
+	
+		
+		else {
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			hawkerToUpdate.setPhoto(fileName);
+
+			String uploadDir = "./hawker-photo/" + hawkerToUpdate.getId();
+
+			Path uploadPath = Paths.get(uploadDir);
+			if (!Files.exists(uploadPath)) {
+				Files.createDirectories(uploadPath);
+			}
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				throw new IOException("Could not save uploaded file: " + fileName);
+			}
+
+//			String localUrl = "http://10.40.1.56:8080" + hawkerToUpdate.getPhotoImagePath();
+			String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media";
+			hawkerToUpdate.setHawkerImg(localUrl);
+
+			hservice.update(hawkerToUpdate);
+			session.removeAttribute("hsession");
+			session.setAttribute("hsession", hservice.findByUserName(hawkerToUpdate.getUserName()));
+
+			return "forward:/hawker/home";
+
+		}
+		
+		
 	}
 
 //	@RequestMapping(value = "/saveUpdate")

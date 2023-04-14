@@ -10,5 +10,7 @@ public interface CentreInterface {
 	public Centre findCentreByName(String name);
 	
 	public void updateNum(Centre centre);
+	
+	
 
 }

@@ -29,7 +29,6 @@ public class CentreService implements CentreInterface {
 	@Override
 	public void updateNum(Centre centre) {
 		cRepo.save(centre);
-		
 	}
 
 }

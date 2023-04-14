@@ -2,6 +2,7 @@ package sg.edu.iss.hawkerise.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,8 @@ public class HawkerService implements HawkerInterface {
 		h.setCloseHours(hawker.getCloseHours());
 		h.setTags(hawker.getTags());
 		h.setStatus(hawker.getStatus());
-		h.setLocalUrl(hawker.getLocalUrl());
+		h.setHawkerImg(hawker.getHawkerImg());
+		h.setPhoto(hawker.getPhoto());
 		hrepo.saveAndFlush(h);
 
 	}
@@ -119,6 +121,16 @@ public class HawkerService implements HawkerInterface {
 			}
 		}
 		return validStatus;
+	}
+
+	@Override
+	public List<Hawker> listTotalHawkers() {
+		return hrepo.findAll();
+	}
+
+	@Override
+	public Hawker findById(int id) {
+		return hrepo.findHawkerById(id);
 	}
 
 }

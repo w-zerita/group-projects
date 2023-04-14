@@ -16,5 +16,7 @@ public interface HawkerRepository extends JpaRepository<Hawker, Integer> {
 	
 	@Query("select h from Hawker h where h.centre.id = :id")
 	 public List<Hawker> findHawkersByCentreId(@Param("id") int id);
+	
+	public Hawker findHawkerById(int id);
 
 }

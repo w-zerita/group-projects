@@ -1,6 +1,7 @@
 package sg.edu.iss.hawkerise.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import sg.edu.iss.hawkerise.model.Hawker;
 
@@ -23,5 +24,8 @@ public interface HawkerInterface {
 	public List<Hawker>listHawkers(int id);
 	
 	public boolean checkValidTime(Hawker hawker);
+	
+	public List<Hawker> listTotalHawkers();
 
+	public Hawker findById(int id);
 }

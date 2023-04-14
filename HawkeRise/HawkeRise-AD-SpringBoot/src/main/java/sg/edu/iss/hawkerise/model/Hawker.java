@@ -21,7 +21,8 @@ public class Hawker {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+  
+	
 	@JsonIgnore
 	private String firstName;
 	@JsonIgnore
@@ -30,24 +31,28 @@ public class Hawker {
 	private String stallName;
 	private String unitNumber;
 	public String contactNumber;
+	
 
 	@JsonIgnore
 	private String userName;
 	@JsonIgnore
 	private String password;
 
+	@JsonIgnore
 	private String[] tags;
+	
 	private String status;
 	private String operatingHours;
 	private String closeHours;
 
+	@JsonIgnore
 	private String photo;
 	private String hawkerImg;
 	
-	private String localUrl;
 
 	@ManyToOne
 	@JoinColumn(name = "centre_id")
+	@JsonIgnore
 	private Centre centre;
 
 //	@ManyToMany
@@ -55,6 +60,7 @@ public class Hawker {
 //	private Set<Tag> tags;
 
 	@OneToMany(mappedBy = "hawker", cascade = { CascadeType.REMOVE })
+	@JsonIgnore
 	private Set<MenuItem> menuItems;
 
 //	@OneToMany(mappedBy = "hawker", cascade = {CascadeType.REMOVE})
@@ -65,17 +71,17 @@ public class Hawker {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Hawker(int id, String stallName, String unitNumber, String contactNumber, String[] tags,
-			String operatingHours, String closeTime, String hawkerImg, String status) {
+	public Hawker(int id, String stallName, String unitNumber, String contactNumber, 
+			String operatingHours, String closeHours, String hawkerImg, String status) {
 		super();
 		this.id = id;
 		this.stallName = stallName;
 		this.unitNumber = unitNumber;
 		this.contactNumber = contactNumber;
-		this.tags = tags;
 		this.operatingHours = operatingHours;
 		this.hawkerImg = hawkerImg;
 		this.status = status;
+		this.closeHours = closeHours;
 	}
 
 	public int getId() {
@@ -166,13 +172,7 @@ public class Hawker {
 		this.menuItems = menuItems;
 	}
 
-//	public Set<Stock> getStock() {
-//		return stock;
-//	}
-//
-//	public void setStock(Set<Stock> stock) {
-//		this.stock = stock;
-//	}
+
 
 	public String[] getTags() {
 		return tags;
@@ -215,19 +215,13 @@ public class Hawker {
 	}
 	
 	@Transient
+	@JsonIgnore
     public String getPhotoImagePath() {
         if (photo == null || id <= 0) return null;
          
         return "/hawker-photo/" + id + "/" + photo;
     }
 	
-	public String getLocalUrl() {
-		return localUrl;
-	}
-
-	public void setLocalUrl(String localUrl) {
-		this.localUrl = localUrl;
-	}
 	
 	@Override
 	public int hashCode() {

@@ -75,7 +75,9 @@ public class MenuController {
 				throw new IOException("Could not save uploaded file: " + fileName);
 			}
 
-			String localUrl = "http://localhost:8080" + newMenuItem.getPhotoImagePath();
+//			String localUrl = "http://10.40.1.56:8080" + newMenuItem.getPhotoImagePath();
+			String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media";
+
 			newMenuItem.setLocalUrl(localUrl);
 
 			mservice.saveMenuItem(newMenuItem);
@@ -105,7 +107,9 @@ public class MenuController {
 				throw new IOException("Could not save uploaded file: " + fileName);
 			}
 
-			String localUrl = "http://localhost:8080" + newMenuItem.getPhotoImagePath();
+
+
+			String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media"  ;
 			newMenuItem.setLocalUrl(localUrl);
 
 			mservice.saveMenuItem(newMenuItem);
@@ -183,7 +187,8 @@ public class MenuController {
 				throw new IOException("Could not save uploaded file: " + fileName);
 			}
 
-			String localUrl = "http://localhost:8080" + menuToUpdate.getPhotoImagePath();
+			String localUrl = "https://firebasestorage.googleapis.com/v0/b/testing-firebase-64caa.appspot.com/o/images%2F" + fileName + "?alt=media" ;
+//			String localUrl = "http://10.40.1.56:8080" + menuToUpdate.getPhotoImagePath();
 			menuToUpdate.setLocalUrl(localUrl);
 
 			mservice.updateMenuItem(menuToUpdate);
